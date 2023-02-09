@@ -1,0 +1,15 @@
+IWADS = [
+    {"filename": "doom.wad", "md5": "1cd63c5ddff1bf8ce844237f580e9cf3", "description": "Registered retail"},
+    {"filename": "doom.wad", "md5": "c4fe9fd920207691a9f493668e0a2083", "description": "Ultimate Doom"},
+    {"filename": "doom.wad", "md5": "fb35c4a5a9fd49ec29ab6e900572c524", "description": "BFG Edition"},
+    {"filename": "doom2.wad", "md5": "25e1459ca71d321525f84628f45ca8cd", "description": "Registered retail"},
+    {"filename": "doom2.wad", "md5": "97573aaf26957099ed45e61d81a0a1a3", "description": "Bethesda.net"},
+    {"filename": "doom2.wad", "md5": "c3bea40570c23e511a7ed3ebcd9865f7", "description": "BFG Edition"},
+    {"filename": "tnt.wad", "md5": "4e158d9953c79ccf97bd0663244cc6b6", "description": ""},
+    {"filename": "plutonia.wad", "md5": "75c8cf89566741fa9d22447604053bd7", "description": ""},
+    {"filename": "heretic.wad", "md5": "66d686b1ed6d35ff103f15dbd30e0341", "description": ""},
+    {"filename": "hexen.wad", "md5": "abb033caf81e26f12a2103e1fa25453f", "description": ""}, 
+    {"filename": "hexdd.wad", "md5": "78d5898e99e220e4de64edaa0e479593", "description": ""}, 
+    {"filename": "strife1.wad", "md5": "2fed2031a5b03892106e0f117f17901f", "description": ""}, 
+    {"filename": "chex.wad", "md5": "25485721882b050afa96a56e5758dd52", "description": ""}, 
+]
