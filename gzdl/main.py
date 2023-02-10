@@ -2,7 +2,6 @@ import os
 import gi
 from gzdl.model import GzdlModel
 
-
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw
@@ -16,6 +15,7 @@ class MainWindow(Gtk.ApplicationWindow):
             gzdl_model = GzdlModel.from_config("gzdl.ini")
         else:
             gzdl_model = GzdlModel()
+        gzdl_model.load_iwads()
 
         hb = Adw.HeaderBar()
         launch_button = Gtk.Button()
@@ -33,7 +33,10 @@ class MainWindow(Gtk.ApplicationWindow):
         gz_path_entry_buffer.set_text(gzdl_model.gzdoom_path, len(gzdl_model.gzdoom_path))
         gz_path_entry = Gtk.Entry()
         gz_path_entry.set_buffer(gz_path_entry_buffer)
-        grid.attach_next_to(gz_path_entry, label, Gtk.PositionType.RIGHT, 1, 1)
+        grid.attach_next_to(gz_path_entry, label, Gtk.PositionType.RIGHT, 2, 1)
+        gz_path_button = Gtk.Button()
+        gz_path_button.set_label("Set gzdoom Path")
+        grid.attach_next_to(gz_path_button, gz_path_entry, Gtk.PositionType.RIGHT, 1, 1)
 
         iwad_section_label = Gtk.Label()
         iwad_section_label.set_label("Select IWAD")
@@ -46,18 +49,26 @@ class MainWindow(Gtk.ApplicationWindow):
         iwad_entry_buffer.set_text(gzdl_model.iwad_directory, len(gzdl_model.iwad_directory))
         iwad_entry = Gtk.Entry()
         iwad_entry.set_buffer(iwad_entry_buffer)
-        grid.attach_next_to(iwad_entry, iwad_dir_label, Gtk.PositionType.RIGHT, 1, 1)
-
+        grid.attach_next_to(iwad_entry, iwad_dir_label, Gtk.PositionType.RIGHT, 2, 1)
+        iwad_path_button = Gtk.Button()
+        iwad_path_button.set_label("Set IWAD Path")
+        grid.attach_next_to(iwad_path_button, iwad_entry, Gtk.PositionType.RIGHT, 1, 1)
 
         iwad_list = Gtk.ListBox()
-        iwad_label = Gtk.Label()
-        iwad_label.set_label("IWADS GO HERE")
-        iwad_label2 = Gtk.Label()
-        iwad_label2.set_label("IWADS GO HERE")
-        iwad_list.append(iwad_label)
-        iwad_list.append(iwad_label2)
+        for iwad in gzdl_model.available_iwads:
+            iwad_label = Gtk.Label()
+            iwad_label.set_label(iwad["filename"])
+            iwad_list.append(iwad_label)
+        grid.attach(iwad_list, 0, 3, 4, 4)
 
-        grid.attach(iwad_list, 0, 3, 3, 3)
+        command_line_label = Gtk.Label()
+        command_line_label.set_text("Command Line:")
+        command_line_entry_buffer = Gtk.EntryBuffer()
+        command_line_entry_buffer.set_text("to implement", len("to implement"))
+        command_line_entry = Gtk.Entry()
+        command_line_entry.set_buffer(command_line_entry_buffer)
+        grid.attach(command_line_label, 0, 7, 1, 1)
+        grid.attach_next_to(command_line_entry, command_line_label, Gtk.PositionType.RIGHT, 1, 2)
 
         self.set_child(grid)
 
