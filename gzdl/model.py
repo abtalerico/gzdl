@@ -1,6 +1,7 @@
 import configparser
 import hashlib
 import os
+import appdirs
 from .iwad import IWADS
 
 
@@ -30,3 +31,12 @@ class GzdlModel:
                                 self.available_iwads.append(iwad)
         else:
             raise Exception("IWAD directory does not exist")
+
+    def write_config(self):
+        config_dir = appdirs.user_config_dir("gzdl", "abtsoft")
+        config = configparser.ConfigParser()
+        config.set("DEFAULT", "gzdoom_path", self.gzdoom_path)
+        config.set("DEFAULT", "iwad_directory", self.iwad_directory)
+        config.set("DEFAULT", "command_line", self.command_line)
+        with open(config_dir + '/gzdl.ini', 'w') as configfile:
+            config.write(configfile)
